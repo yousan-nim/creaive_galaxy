@@ -1,101 +1,414 @@
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
 
-export default function Home() {
+/* ------------------------- Interfaces ------------------------- */
+interface StartPageProps {
+  onNext: () => void;
+}
+
+interface PageOneProps {
+  onOptionClick: (option: TestPageOption) => void;
+}
+
+interface TestPageOption {
+  id: string;
+  choise?: string;
+  question: string;
+  description: string;
+  cardImage: string;
+}
+
+interface TestPageProps {
+  title: string;
+  question: string;
+  icon: string;
+  options: TestPageOption[];
+  backgroundImage?: string;
+  onOptionClick?: (option: TestPageOption) => void;
+}
+
+interface Answers {
+  pageOneChoice?: TestPageOption;
+  pageTwoChoice?: TestPageOption;
+  pageThreeChoice?: TestPageOption;
+  pageFourChoice?: TestPageOption;
+}
+
+interface SummaryPageProps {
+  answers: Answers;
+}
+
+/* ------------------------- Reusable Components ------------------------- */
+const Footer = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="w-full">
+      <img src="/footer/foot.png" className="w-full" alt="Footer Image" />
     </div>
   );
+};
+
+const TestPage: React.FC<TestPageProps> = ({
+  title,
+  question,
+  options,
+  icon,
+  backgroundImage,
+  onOptionClick,
+}) => {
+  return (
+    <div className="w-full min-h-screen flex flex-col justify-between items-center relative">
+      {backgroundImage && (
+        <img
+          src={backgroundImage}
+          alt="Background"
+          className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+        />
+      )}
+
+      {/* Header */}
+      <div className="mt-[20vh] pt-20 text-white text-center">
+        <h1 className="text-lg font-bold uppercase text-[22px] text-cyan-400">{title}</h1>
+        <img src={`/icon/${icon}`} alt="Test Icon" className="mx-auto mt-4 w-[100px]" />
+      </div>
+
+      {/* Question Section */}
+      <div className="text-white w-full text-center flex-1 flex flex-col justify-center">
+        <p className="px-4 text-[18px]">{question}</p>
+
+        {/* Options */}
+        <div className="w-full grid gap-4 mt-10">
+          {options.map((option, index) => (
+            <button
+              key={index}
+              className="py-4 px-10 text-white rounded-lg transition"
+              onClick={() => onOptionClick?.(option)} 
+            >
+              {option.question}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+};
+
+/* ------------------------- Individual Pages ------------------------- */
+const StartPage = ({ onNext }: StartPageProps) => {
+  return (
+    <div className="w-full min-h-screen flex flex-col justify-between items-center relative">
+      <img
+        src="/bg/PG BG 01.png"
+        alt="start game"
+        className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+      />
+      <div className="flex-1"></div>
+
+      <div className="text-white w-full text-center pb-20">
+        <div className="leading-6 text-[14px] text-thin">
+          Embark on a celestial journey <br />
+          through our psychological game, <br />
+          where your choice reveals a unique star <br />
+          in the galaxy of your personality.
+        </div>
+
+        <div className="mt-10 text-[22px] font-thin">Let the voyage begin!</div>
+
+        <button
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-blue-200"
+          onClick={onNext}
+        >
+          Start
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const PageOne = ({ onOptionClick }: PageOneProps) => {
+  return (
+    <TestPage
+      title="Door Choice Personality Test"
+      question="Imagine you're walking down a hallway with three doors. Each door is painted a different color."
+      icon="Icon-01.png"
+      options={[
+        {
+          id: "A",
+          question: "Door A - Bright Red",
+          description:
+            "Choosing the red door suggests you are bold, energetic, and ready to take on challenges.",
+          cardImage: "/card/Door/Red Door.png",
+        },
+        {
+          id: "B",
+          question: "Door B - Bright Blue",
+          description:
+            "Opting for the blue door indicates that you value peace, serenity, and stability.",
+          cardImage: "/card/Door/Blue Door.png",
+        },
+        {
+          id: "C",
+          question: "Door C - Vibrant Yellow",
+          description:
+            "Picking the yellow door means you are optimistic, creative, and outgoing.",
+          cardImage: "/card/Door/Yellow Door.png",
+        },
+      ]}
+      backgroundImage="/bg/PG BG 00.png"
+      onOptionClick={onOptionClick} // pass directly
+    />
+  );
+};
+
+const PageTwo = ({ onOptionClick }: PageOneProps) => {
+  return (
+    <TestPage
+      title="Animal Preference Test"
+      question="If you were to choose one animal as a pet, which would it be?"
+      icon="Icon-02.png"
+      options={[
+        {
+          id: "A",
+          question: "A: A loyal dog",
+          description: "Dog lovers are often loyal and enjoy companionship.",
+          cardImage: "/card/Animal/Loyal Dog.png",
+        },
+        {
+          id: "B",
+          question: "B: An independent cat",
+          description:
+            "Those who prefer cats might value independence and quietude.",
+          cardImage: "/card/Animal/Independent Cat.png",
+        },
+        {
+          id: "C",
+          question: "C: A mysterious snake",
+          description:
+            "Snake admirers could be curious and attracted to the unconventional.",
+          cardImage: "/card/Animal/Mysterious Snake.png",
+        },
+        {
+          id: "D",
+          question: "D: A playful monkey",
+          description:
+            "Monkey enthusiasts are generally playful, energetic, and love being the center of attention.",
+          cardImage: "/card/Animal/Playful Monkey.png",
+        },
+      ]}
+      backgroundImage="/bg/PG BG 00.png"
+      onOptionClick={onOptionClick} // Pass directly
+    />
+  );
+};
+
+const PageThree = ({ onOptionClick }: PageOneProps) => {
+  return (
+    <TestPage
+      title="Tree Image Association"
+      question="Choose the tree that you feel most drawn to?"
+      icon="Icon-03.png"
+      options={[
+        {
+          id: "A",
+          question: "A: A towering, robust oak tree",
+          description: "You might value strength, reliability, and resilience.",
+          cardImage: "/card/Tree/Oak Tree.png",
+        },
+        {
+          id: "B",
+          question: "B: A slender, graceful willow tree",
+          description:
+            "You likely appreciate flexibility, elegance, and emotional depth.",
+          cardImage: "/card/Tree/Willow Tree.png",
+        },
+        {
+          id: "C",
+          question: "C: A small, vibrant cherry blossom tree",
+          description:
+            "You may be drawn to beauty, renewal, and the joys of life.",
+          cardImage: "/card/Tree/Blossom.png",
+        },
+      ]}
+      backgroundImage="/bg/PG BG 00.png"
+      onOptionClick={onOptionClick}
+    />
+  );
+};
+
+const PageFour = ({ onOptionClick }: PageOneProps) => {
+  return (
+    <TestPage
+      title="Seasonal Preference Insight Test"
+      question="Which season do you feel most connected to?"
+      icon="Icon-04.png"
+      options={[
+        {
+          id: "A",
+          question: "A: Spring",
+          description:
+            "Spring lovers often appreciate new beginnings and are generally optimistic.",
+          cardImage: "/card/Season/Spring.png",
+        },
+        {
+          id: "B",
+          question: "B: Summer",
+          description:
+            "Those who favor summer might enjoy high energy, warmth, and social gatherings.",
+          cardImage: "/card/Season/Summer.png",
+        },
+        {
+          id: "C",
+          question: "C: Autumn",
+          description:
+            "Autumn admirers could reflect a love for change, comfort, and quiet preparation.",
+          cardImage: "/card/Season/Autumn.png",
+        },
+        {
+          id: "D",
+          question: "D: Winter",
+          description:
+            "Winter enthusiasts might value introspection, peace, and purity.",
+          cardImage: "/card/Season/Winter.png",
+        },
+      ]}
+      backgroundImage="/bg/PG BG 00.png"
+      onOptionClick={onOptionClick}
+    />
+  );
+};
+const SummaryPage = ({ answers }: SummaryPageProps) => {
+  return (
+    <div className="w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
+      <h1 className="text-2xl font-bold mb-8">Your Personalied Galaxi</h1>
+      <div className="w-full grid grid-cols-2">
+        <img
+          src={answers.pageOneChoice?.cardImage}
+          alt="Door Choice"
+          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+        />
+
+        <img
+          src={answers.pageTwoChoice?.cardImage}
+          alt="Animal Choice"
+          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+        />
+
+        <img
+          src={answers.pageThreeChoice?.cardImage}
+          alt="Tree Choice"
+          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+        />
+
+        <img
+          src={answers.pageFourChoice?.cardImage}
+          alt="Season Choice"
+          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+        />
+      </div>
+
+      <div className="w-full">
+        <p className="w-full text-center text-[29px] font-black py-3">
+          {answers.pageFourChoice?.id} {answers.pageTwoChoice?.id}{" "}
+          {answers.pageThreeChoice?.id} {answers.pageFourChoice?.id}{" "}
+        </p>
+        <p>
+          {answers.pageFourChoice?.description}{" "}
+          {answers.pageTwoChoice?.description}{" "}
+          {answers.pageThreeChoice?.description}{" "}
+          {answers.pageFourChoice?.description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/* ------------------------- Main Page (Multi-Step) ------------------------- */
+
+export default function Home() {
+  const [currentPage, setCurrentPage] = useState<
+    "start" | "one" | "two" | "three" | "four" | "summary"
+  >("start");
+
+  const [answers, setAnswers] = useState<Answers>({});
+
+  // Receives the page ID (e.g., "one") and the chosen option object
+  const handleOptionClick = (page: string, option: TestPageOption) => {
+    setAnswers((prev) => {
+      switch (page) {
+        case "one":
+          return { ...prev, pageOneChoice: option };
+        case "two":
+          return { ...prev, pageTwoChoice: option };
+        case "three":
+          return { ...prev, pageThreeChoice: option };
+        case "four":
+          return { ...prev, pageFourChoice: option };
+        default:
+          return prev;
+      }
+    });
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "start":
+        return (
+          <StartPage
+            onNext={() => {
+              setCurrentPage("one");
+            }}
+          />
+        );
+
+      case "one":
+        return (
+          <PageOne
+            onOptionClick={(option) => {
+              handleOptionClick("one", option);
+              setCurrentPage("two");
+            }}
+          />
+        );
+
+      case "two":
+        return (
+          <PageTwo
+            onOptionClick={(option) => {
+              handleOptionClick("two", option);
+              setCurrentPage("three");
+            }}
+          />
+        );
+
+      case "three":
+        return (
+          <PageThree
+            onOptionClick={(option) => {
+              handleOptionClick("three", option);
+              setCurrentPage("four");
+            }}
+          />
+        );
+
+      case "four":
+        return (
+          <PageFour
+            onOptionClick={(option) => {
+              handleOptionClick("four", option);
+              setCurrentPage("summary");
+            }}
+          />
+        );
+
+      case "summary":
+        return <SummaryPage answers={answers} />;
+
+      default:
+        return <StartPage onNext={() => setCurrentPage("one")} />;
+    }
+  };
+
+  return <div>{renderPage()}</div>;
 }
