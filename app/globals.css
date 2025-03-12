@@ -1,15 +1,42 @@
 @import "tailwindcss";
+@tailwind utilities;
+
+
+@layer utilities {
+  .font-sukhumvit {
+    font-family: "Sukhumvit";
+    src: url('../public/font/Sukhumvit/SukhumvitSet-SemiBold.ttf') format('truetype');
+  }
+}
+
+@layer utilities {
+  .font-quicksilver {
+    font-family: "Quicksilver";
+    src: url('../public/font/quicksilver/Quicksilver.ttf') format('truetype');
+  }
+}
+
+@layer utilities {
+  .font-akrobat {
+    font-family: "Akrobat";
+    src: url('../public/font/akrobat/Akrobat-Regular.otf') format('otf');
+  }
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+@theme {
+  --font-quicksilver: "font-quicksilver", "sans-serif"
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono)
 }
 
 @media (prefers-color-scheme: dark) {

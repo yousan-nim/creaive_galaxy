@@ -66,24 +66,32 @@ const TestPage: React.FC<TestPageProps> = ({
       )}
 
       {/* Header */}
-      <div className="mt-[20vh] pt-20 text-white text-center">
-        <h1 className="text-lg font-bold uppercase text-[22px] text-cyan-400">{title}</h1>
-        <img src={`/icon/${icon}`} alt="Test Icon" className="mx-auto mt-4 w-[100px]" />
+      <div className="mt-[5vh] pt-20 text-white text-center">
+        <h1 className="text-lg font-bold uppercase text-[22px] text-cyan-400 px-2">
+          {title}
+        </h1>
+        <img
+          src={`/icon/${icon}`}
+          alt="Test Icon"
+          className="mx-auto mt-4 w-[100px]"
+        />
       </div>
 
       {/* Question Section */}
       <div className="text-white w-full text-center flex-1 flex flex-col justify-center">
-        <p className="px-4 text-[18px]">{question}</p>
+        <p className="text-[18px] px-10 pt-10">{question}</p>
 
         {/* Options */}
         <div className="w-full grid gap-4 mt-10">
           {options.map((option, index) => (
             <button
               key={index}
-              className="py-4 px-10 text-white rounded-lg transition"
-              onClick={() => onOptionClick?.(option)} 
+              className="py-4 px-10 text-white rounded-lg transition "
+              onClick={() => onOptionClick?.(option)}
             >
-              {option.question}
+              <div className=" border-cyan-100 border-b w-2/3 m-auto pb-2">
+                {option.question}
+              </div>
             </button>
           ))}
         </div>
@@ -107,17 +115,19 @@ const StartPage = ({ onNext }: StartPageProps) => {
       <div className="flex-1"></div>
 
       <div className="text-white w-full text-center pb-20">
-        <div className="leading-6 text-[14px] text-thin">
+        <div className="leading-6 text-[14px] font-qsv">
           Embark on a celestial journey <br />
           through our psychological game, <br />
           where your choice reveals a unique star <br />
           in the galaxy of your personality.
         </div>
 
-        <div className="mt-10 text-[22px] font-thin">Let the voyage begin!</div>
+        <div className="mt-10 text-[22px] font-thin font-qsv">
+          Let the voyage begin!
+        </div>
 
         <button
-          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-blue-200"
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300"
           onClick={onNext}
         >
           Start
@@ -280,46 +290,58 @@ const PageFour = ({ onOptionClick }: PageOneProps) => {
 };
 const SummaryPage = ({ answers }: SummaryPageProps) => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
-      <h1 className="text-2xl font-bold mb-8">Your Personalied Galaxi</h1>
+    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-gray-900 text-white p-6 pt-10">
+      <h1 className="text-2xl font-bold mb-4 mt-0">Your Personalied Galaxi</h1>
       <div className="w-full grid grid-cols-2">
         <img
           src={answers.pageOneChoice?.cardImage}
           alt="Door Choice"
-          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+          className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
           src={answers.pageTwoChoice?.cardImage}
           alt="Animal Choice"
-          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+          className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
           src={answers.pageThreeChoice?.cardImage}
           alt="Tree Choice"
-          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+          className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
           src={answers.pageFourChoice?.cardImage}
           alt="Season Choice"
-          className="mx-auto mt-2 w-[100px] h-auto object-contain col-span-1"
+          className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
       </div>
 
       <div className="w-full">
-        <p className="w-full text-center text-[29px] font-black py-3">
+        <p className="w-full text-center text-[26px] font-black py-3 text-cyan-500">
           {answers.pageFourChoice?.id} {answers.pageTwoChoice?.id}{" "}
           {answers.pageThreeChoice?.id} {answers.pageFourChoice?.id}{" "}
         </p>
-        <p>
+        <p className=" text-center text-[14px] font-thin pb-2 w-2/3 m-auto">
+          {answers.pageFourChoice?.question}, {answers.pageTwoChoice?.question}{" "}
+          ,{answers.pageThreeChoice?.question},{" "}
+          {answers.pageFourChoice?.question}{" "}
+        </p>
+        <p className="text-[12px] text-center text-cyan-400">
           {answers.pageFourChoice?.description}{" "}
           {answers.pageTwoChoice?.description}{" "}
           {answers.pageThreeChoice?.description}{" "}
           {answers.pageFourChoice?.description}
         </p>
+
       </div>
+        <button
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 m-auto"
+          // onClick={onNext}
+        >
+          SHARE
+        </button>
     </div>
   );
 };
