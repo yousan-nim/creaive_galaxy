@@ -363,7 +363,7 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
           ,{answers.pageThreeChoice?.question},{" "}
           {answers.pageFourChoice?.question}{" "}
         </p>
-        <p className="text-[12px] text-center text-cyan-400">
+        <p className="text-[12px] text-center text-cyan-400 w-5/6 m-auto">
           {answers.pageFourChoice?.description}{" "}
           {answers.pageTwoChoice?.description}{" "}
           {answers.pageThreeChoice?.description}{" "}
