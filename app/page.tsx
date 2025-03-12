@@ -42,11 +42,7 @@ interface SummaryPageProps {
 const Footer = () => {
   return (
     <div className="w-full">
-      <img
-        src="https://yousan-nim.github.io/creaive_galaxy/footer/foot.png"
-        className="w-full"
-        alt="Footer Image"
-      />
+      <img src="https://yousan-nim.github.io/creaive_galaxy/footer/foot.png" className="w-full" alt="Footer Image" />
     </div>
   );
 };
@@ -301,42 +297,28 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
         className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
 
-      <h1 className="text-2xl font-bold mb-4 pt-10 uppercase text-cyan-500">
-        Your Personalied Galaxi
-      </h1>
+      <h1 className="text-2xl font-bold mb-4 pt-10 uppercase text-cyan-500">Your Personalied Galaxi</h1>
       <div className="w-full grid grid-cols-2">
         <img
-          src={
-            "https://yousan-nim.github.io/creaive_galaxy" +
-            answers.pageOneChoice?.cardImage
-          }
+          src={"https://yousan-nim.github.io/creaive_galaxy" + answers.pageOneChoice?.cardImage}
           alt="Door Choice"
           className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
-          src={
-            "https://yousan-nim.github.io/creaive_galaxy" +
-            answers.pageTwoChoice?.cardImage
-          }
+          src={"https://yousan-nim.github.io/creaive_galaxy" + answers.pageTwoChoice?.cardImage}
           alt="Animal Choice"
           className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
-          src={
-            "https://yousan-nim.github.io/creaive_galaxy" +
-            answers.pageThreeChoice?.cardImage
-          }
+          src={"https://yousan-nim.github.io/creaive_galaxy" + answers.pageThreeChoice?.cardImage}
           alt="Tree Choice"
           className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
 
         <img
-          src={
-            "https://yousan-nim.github.io/creaive_galaxy" +
-            answers.pageFourChoice?.cardImage
-          }
+          src={"https://yousan-nim.github.io/creaive_galaxy" + answers.pageFourChoice?.cardImage}
           alt="Season Choice"
           className="mx-auto mt-1 w-[150px] h-auto object-contain col-span-1"
         />
@@ -358,13 +340,14 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
           {answers.pageThreeChoice?.description}{" "}
           {answers.pageFourChoice?.description}
         </p>
+
       </div>
-      <button
-        className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 m-auto"
-        // onClick={onNext}
-      >
-        SHARE
-      </button>
+        <button
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 m-auto"
+          // onClick={onNext}
+        >
+          SHARE
+        </button>
     </div>
   );
 };
