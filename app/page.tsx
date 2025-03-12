@@ -59,7 +59,7 @@ const TestPage: React.FC<TestPageProps> = ({
     <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       {backgroundImage && (
         <img
-          src={"https://yousan-nim.github.io/creaive_galaxy/" + backgroundImage}
+          src={`https://yousan-nim.github.io/creaive_galaxy${backgroundImage}`}
           alt="Background"
           className="absolute -z-10 left-0 w-[520px] h-[932px]"
         />
@@ -71,7 +71,7 @@ const TestPage: React.FC<TestPageProps> = ({
           {title}
         </h1>
         <img
-          src={`/icon/${icon}`}
+          src={`https://yousan-nim.github.io/creaive_galaxy/icon/${icon}`}
           alt="Test Icon"
           className="mx-auto mt-4 w-[100px]"
         />
@@ -108,7 +108,7 @@ const StartPage = ({ onNext }: StartPageProps) => {
   return (
     <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       <img
-        src="/bg/PG BG 01.png"
+        src="https://yousan-nim.github.io/creaive_galaxy/bg/01.png"
         alt="start game"
         className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
@@ -166,7 +166,7 @@ const PageOne = ({ onOptionClick }: PageOneProps) => {
           cardImage: "/card/Door/Yellow Door.png",
         },
       ]}
-      backgroundImage="/bg/PG BG 00.png"
+      backgroundImage="/bg/00.png"
       onOptionClick={onOptionClick} // pass directly
     />
   );
@@ -207,7 +207,7 @@ const PageTwo = ({ onOptionClick }: PageOneProps) => {
           cardImage: "/card/Animal/Playful Monkey.png",
         },
       ]}
-      backgroundImage="/bg/PG BG 00.png"
+      backgroundImage="/bg/00.png"
       onOptionClick={onOptionClick} // Pass directly
     />
   );
@@ -241,7 +241,7 @@ const PageThree = ({ onOptionClick }: PageOneProps) => {
           cardImage: "/card/Tree/Blossom.png",
         },
       ]}
-      backgroundImage="/bg/PG BG 00.png"
+      backgroundImage="/bg/00.png"
       onOptionClick={onOptionClick}
     />
   );
@@ -283,7 +283,7 @@ const PageFour = ({ onOptionClick }: PageOneProps) => {
           cardImage: "/card/Season/Winter.png",
         },
       ]}
-      backgroundImage="/bg/PG BG 00.png"
+      backgroundImage="/bg/00.png"
       onOptionClick={onOptionClick}
     />
   );
@@ -292,7 +292,7 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
   return (
     <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       <img
-        src="/bg/PG BG 02.png"
+        src="/bg/02.png"
         alt="start game"
         className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
