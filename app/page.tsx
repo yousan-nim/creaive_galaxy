@@ -89,7 +89,7 @@ const TestPage: React.FC<TestPageProps> = ({
               className="py-4 px-10 text-white rounded-lg transition "
               onClick={() => onOptionClick?.(option)}
             >
-              <div className=" border-cyan-100 border-b w-2/3 m-auto pb-2">
+              <div className=" border-cyan-100 border-b w-2/3 m-auto pb-2 text-white">
                 {option.question}
               </div>
             </button>
@@ -127,7 +127,7 @@ const StartPage = ({ onNext }: StartPageProps) => {
         </div>
 
         <button
-          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300"
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 text-white"
           onClick={onNext}
         >
           Start
@@ -329,7 +329,7 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
           {answers.pageFourChoice?.id} {answers.pageTwoChoice?.id}{" "}
           {answers.pageThreeChoice?.id} {answers.pageFourChoice?.id}{" "}
         </p>
-        <p className=" text-center text-[14px] font-thin pb-2 w-2/3 m-auto">
+        <p className=" text-center text-[14px] font-thin pb-2 w-2/3 m-auto text-white">
           {answers.pageFourChoice?.question}, {answers.pageTwoChoice?.question}{" "}
           ,{answers.pageThreeChoice?.question},{" "}
           {answers.pageFourChoice?.question}{" "}
@@ -343,7 +343,7 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
 
       </div>
         <button
-          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 m-auto"
+          className="py-4 px-12 rounded uppercase font-black text-xl mt-10 bg-transparent broder border-2 border-cyan-300 m-auto text-white"
           // onClick={onNext}
         >
           SHARE
