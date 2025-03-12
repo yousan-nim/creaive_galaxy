@@ -59,7 +59,7 @@ const TestPage: React.FC<TestPageProps> = ({
     <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       {backgroundImage && (
         <img
-          src={backgroundImage}
+          src={"https://yousan-nim.github.io/creaive_galaxy/" + backgroundImage}
           alt="Background"
           className="absolute -z-10 left-0 w-[520px] h-[932px]"
         />
