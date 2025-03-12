@@ -290,8 +290,14 @@ const PageFour = ({ onOptionClick }: PageOneProps) => {
 };
 const SummaryPage = ({ answers }: SummaryPageProps) => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-gray-900 text-white p-6 pt-10">
-      <h1 className="text-2xl font-bold mb-4 mt-0">Your Personalied Galaxi</h1>
+    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-transparent text-white p-6 pt-10">
+      <img
+        src="/bg/PG BG 02.png"
+        alt="start game"
+        className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+      />
+
+      <h1 className="text-2xl font-bold mb-4 mt-0 uppercase text-cyan-500">Your Personalied Galaxi</h1>
       <div className="w-full grid grid-cols-2">
         <img
           src={answers.pageOneChoice?.cardImage}
