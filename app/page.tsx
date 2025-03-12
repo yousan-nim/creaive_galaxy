@@ -292,7 +292,7 @@ const SummaryPage = ({ answers }: SummaryPageProps) => {
   return (
     <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       <img
-        src="/bg/02.png"
+        src="https://yousan-nim.github.io/creaive_galaxy/bg/02.png"
         alt="start game"
         className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
