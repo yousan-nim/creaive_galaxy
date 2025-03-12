@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="max-h-screenflex items-center justify-center bg-red-200 ">
+      <body className="max-h-screen flex items-center justify-center bg-red-200 ">
         <div className="w-full max-w-[520px] rounded-lg shadow ">
           {children}
         </div>

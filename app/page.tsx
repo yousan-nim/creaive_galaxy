@@ -56,12 +56,12 @@ const TestPage: React.FC<TestPageProps> = ({
   onOptionClick,
 }) => {
   return (
-    <div className="w-full min-h-screen flex flex-col justify-between items-center relative">
+    <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       {backgroundImage && (
         <img
           src={backgroundImage}
           alt="Background"
-          className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+          className="absolute -z-10 left-0 w-[520px] h-[932px]"
         />
       )}
 
@@ -106,11 +106,11 @@ const TestPage: React.FC<TestPageProps> = ({
 /* ------------------------- Individual Pages ------------------------- */
 const StartPage = ({ onNext }: StartPageProps) => {
   return (
-    <div className="w-full min-h-screen flex flex-col justify-between items-center relative">
+    <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       <img
         src="/bg/PG BG 01.png"
         alt="start game"
-        className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+        className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
       <div className="flex-1"></div>
 
@@ -290,14 +290,14 @@ const PageFour = ({ onOptionClick }: PageOneProps) => {
 };
 const SummaryPage = ({ answers }: SummaryPageProps) => {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-start bg-transparent text-white p-6 pt-10">
+    <div className="w-screen md:w-[520px] h-screen md:max-h-[932px] flex flex-col justify-between items-center relative">
       <img
         src="/bg/PG BG 02.png"
         alt="start game"
-        className="absolute -z-10 top-20 left-0 w-[520px] h-[932px] lg:max-w-[400px] lg:max-h-[700px] object-cover"
+        className="absolute -z-10 left-0 w-[520px] h-[932px]"
       />
 
-      <h1 className="text-2xl font-bold mb-4 mt-0 uppercase text-cyan-500">Your Personalied Galaxi</h1>
+      <h1 className="text-2xl font-bold mb-4 pt-10 uppercase text-cyan-500">Your Personalied Galaxi</h1>
       <div className="w-full grid grid-cols-2">
         <img
           src={answers.pageOneChoice?.cardImage}
